@@ -11,5 +11,5 @@ cd Sentiment-Analysis
 `
 
 `
-python3 senti_anal.py input.txt
+python3 sent_analy.py input.txt
 `
