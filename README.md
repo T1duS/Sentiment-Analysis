@@ -1,5 +1,5 @@
 # Sentiment-Analysis
-Does sentiment analysis
+Does sentiment analysis. ie given an input file tells if it is a positive, neutral or negative.
 
 # Running
 `
