@@ -13,7 +13,7 @@ for sent in pos_lines:
 	proper_words = set()
 	for i in words:
 		if len(i) > 1:
-			proper_words.add(i)
+			proper_words.add(i.lower())
 	for i in proper_words:
 		pos_count[i] = pos_count.get(i,0)+1	
 		total_count[i] = total_count.get(i,0)+1		
@@ -29,7 +29,7 @@ for sent in neg_lines:
 	proper_words = set()
 	for i in words:
 		if len(i) > 1:
-			proper_words.add(i)
+			proper_words.add(i.lower())
 	for i in proper_words:
 		neg_count[i] = neg_count.get(i,0)+1		
 		total_count[i] = total_count.get(i,0)+1
@@ -50,11 +50,12 @@ probability_pos = pos_total/float(total_lines)
 probability_neg = neg_total/float(total_lines)
 for i in range(n):
 	if(len(words[i]) <= 1): continue
-	if(words[i] in pos_count):  
-		probability_pos *= pos_count[words[i]]/float(pos_total)
+	words[i] = words[i].lower()
+	if words[i] in pos_count and neg_count:  
+		probability_pos *= pos_count.get(words[i],0)/float(pos_total)
 		probability_pos *= total_lines/float(total_count[words[i]])
-	if(words[i] in neg_count):  
-		probability_neg *= neg_count[words[i]]/float(neg_total)
+
+		probability_neg *= neg_count.get(words[i],0)/float(neg_total)
 		probability_neg *= total_lines/float(total_count[words[i]])	
 
 print(probability_pos,probability_neg)
